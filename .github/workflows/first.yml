@@ -2,17 +2,17 @@ name: Ajout d'un commentaire
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, closed]
 
 permissions:
   pull-requests: write
 
 jobs:
-  Comment:
+  Comment_PR:
     name: Ajout d'un commentaire
     runs-on: ubuntu-latest
     steps:
-      - run: gh pr comment $PR_URL --body "Welcome to the repository!"
+      - run: gh pr comment $PR_URL --body "Une PR a été ouverte."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
