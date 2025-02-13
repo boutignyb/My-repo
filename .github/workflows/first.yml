@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'opened'}}
+      - if: ${{ github.event_name == 'pull_request' && github.event.pull_request.state == 'opened'}}
         run: gh pr comment $PR_URL --body "Une PR a été ouverte."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
