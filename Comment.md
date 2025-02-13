@@ -9,3 +9,5 @@ Jcrée la branche "feature/B5" pour faire un commit puis un push pour tester le 
 Jcrée la branche "feature/B6" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
 
 Jcrée la branche "feature/B7" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
+
+Jcrée la branche "feature/B8" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
