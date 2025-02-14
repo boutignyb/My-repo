@@ -31,8 +31,8 @@ jobs:
   
   Readme-update:
     name: Mise à jour du fichier README
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
-    needs: Comment_PR
 
     steps:
       - uses: actions/checkout@v4
