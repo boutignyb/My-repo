@@ -1,6 +1,8 @@
 name: Ajout d'un commentaire
 
 on:
+  push:
+    branches: [main, 'feature/**'] 
   pull_request:
     types: [opened, closed]
 
@@ -20,7 +22,32 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
 
       - if: ${{ github.event.pull_request.merged == true }}
-        run: gh pr comment $PR_URL --body "La PR a été mergée."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: ${{ github.event.pull_request.html_url }}  
+        run: gh pr comment $PR_URL --body "La PR a été mergée."
+  
+  Readme-update:
+    name: Mise à jour du fichier README
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == true }}
+
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+        run: git clone https://github.com/boutignyb/My-repo.git
+
+      - name: Création d'une branche feature/readme
+        run: git checkout -b feature/readme
+
+      - name: Mise à jour du README.md
+        run: echo "Une mise à jour à a été effectuée" 
+      
+      - name: PR du README
+        run: |
+          git add .
+          git commit -m "Mise à jour de README.md"
+          git push origin feature/readme
+          git pull_request: auto-merged
+          git branch -d feature/readme
+          git checkout main
