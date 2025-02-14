@@ -1,8 +1,6 @@
 name: Ajout d'un commentaire
 
 on:
-  push:
-    branches: [main, 'feature/**'] 
   pull_request:
     types: [opened, closed]
 
@@ -36,14 +34,18 @@ jobs:
       REF: ${{ github.head_ref }}
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Récupération du dépôt
         run: git clone https://github.com/boutignyb/My-repo.git
 
       - name: Création d'une branche feature/readme
-        run: git checkout -b feature/readme
+        run: |
+          cd $GITHUB_WORKSPACE 
+          git checkout -b feature/readme
 
       - name: Mise à jour du README.md
-        run: echo "file=README.md, line=2::Une mise à jour a été effectuée par $USERS depuis la branche $REF." >> $GITHUB_OUTPUT
+        run: echo > "file=README.md, line=2::Une mise à jour a été effectuée par $USERS depuis la branche $REF."
       
       - name: PR du README
         run: |
