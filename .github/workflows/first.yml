@@ -43,10 +43,7 @@ jobs:
         run: git checkout -b feature/readme
 
       - name: Mise à jour du README.md
-        run: |
-          open ${{ github.action_path }}/README.md
-          echo "Une mise à jour a été effectuée par $USERS depuis la branche $REF."
-          save ${{ github.action_path }}/README.md
+        run: echo "file=README.md, line=2::Une mise à jour a été effectuée par $USERS depuis la branche $REF." >> $GITHUB_OUTPUT
       
       - name: PR du README
         run: |
