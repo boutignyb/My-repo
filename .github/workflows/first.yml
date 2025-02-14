@@ -31,6 +31,9 @@ jobs:
     name: Mise à jour du fichier README
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.merged == true }}
+    env:
+      USERS: ${{ github.actor_id }}
+      REF: ${{ github.head_ref }}
 
     steps:
       - name: Récupération du dépôt
@@ -40,7 +43,10 @@ jobs:
         run: git checkout -b feature/readme
 
       - name: Mise à jour du README.md
-        run: echo "Une mise à jour à a été effectuée" 
+        run: |
+          open ${{ github.action_path }}/README.md
+          echo "Une mise à jour a été effectuée par $USERS depuis la branche $REF."
+          save ${{ github.action_path }}/README.md
       
       - name: PR du README
         run: |
