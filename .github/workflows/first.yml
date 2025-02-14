@@ -34,7 +34,6 @@ jobs:
 
     steps:
       - name: Récupération du dépôt
-        uses: actions/checkout@v4
         run: git clone https://github.com/boutignyb/My-repo.git
 
       - name: Création d'une branche feature/readme
