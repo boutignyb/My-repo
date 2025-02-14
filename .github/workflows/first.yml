@@ -33,6 +33,8 @@ jobs:
     name: Mise à jour du fichier README
     if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
