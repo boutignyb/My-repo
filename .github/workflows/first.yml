@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, closed]
 
+env:
+  USERS: ${{ github.actor_id }}
+  REF: ${{ github.head_ref }}
+
 permissions:
   pull-requests: write
 
@@ -28,10 +32,7 @@ jobs:
   Readme-update:
     name: Mise à jour du fichier README
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true }}
-    env:
-      USERS: ${{ github.actor_id }}
-      REF: ${{ github.head_ref }}
+    needs: Comment_PR
 
     steps:
       - uses: actions/checkout@v4
@@ -41,11 +42,11 @@ jobs:
 
       - name: Création d'une branche feature/readme
         run: |
-          cd $GITHUB_WORKSPACE 
+          cd $GITHUB_WORKSPACE/My-repo
           git checkout -b feature/readme
 
       - name: Mise à jour du README.md
-        run: echo > "file=README.md, line=2::Une mise à jour a été effectuée par $USERS depuis la branche $REF."
+        run: echo >> "file=README.md, line=2::Une mise à jour a été effectuée par $USERS depuis la branche $REF."
       
       - name: PR du README
         run: |
