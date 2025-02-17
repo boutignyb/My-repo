@@ -45,6 +45,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/My-repo
           git checkout -b feature/readme
+          git checkout feature/readme
 
       - name: Mise à jour du README.md
         run: |
@@ -61,7 +62,7 @@ jobs:
             git commit -m "Mise à jour de README.md"
 
       - name: Push de la branche en cours
-        run: git push $GITHUB_WORKSPACE feature/readme
+        run: git push origin feature/readme
 
       - name: PR de la branche
         run: git pull_request_auto_merged
