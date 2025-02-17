@@ -33,8 +33,6 @@ jobs:
     name: Mise à jour du fichier README
     if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
-    env:
-      MY_TOKEN: ${{ secrets.MY_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
@@ -48,8 +46,10 @@ jobs:
           git checkout -b feature/readme
 
       - name: Mise à jour du README.md
-        run: echo >> "file=$GITHUB_WORKSPACE_My-repo/README.md, line=2::Une mise à jour a été effectuée par $USERS depuis la branche $REF."
-      
+        run: |
+          cd $GITHUB_WORKSPACE/My-repo
+          echo >> "file=README.md, line=2:Une mise à jour a été effectuée par $USERS depuis la branche $REF."
+
       - name: PR du README
         run: |
           git add .
