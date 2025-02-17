@@ -46,7 +46,8 @@ jobs:
           git checkout -b feature/readme
 
       - name: Mise à jour du README.md
-        run: echo >> "file=README.md, line=2: Une mise à jour a été effectuée par $USERS depuis la branche $REF."
+        run: |
+          echo >> "file=README.md, line=2: Une mise à jour a été effectuée par $USERS depuis la branche $REF."
 
       - name: PR du README
         run: |
