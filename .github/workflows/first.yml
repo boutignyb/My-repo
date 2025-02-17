@@ -5,7 +5,8 @@ on:
     types: [opened, closed]
 
 env:
-  USERS: ${{ github.actor_id }}
+  USERS: ${{ github.actor }}
+  USERS_ID: ${{ github.actor_id }}
   REF: ${{ github.head_ref }}
 
 permissions:
@@ -47,7 +48,8 @@ jobs:
 
       - name: Mise à jour du README.md
         run: |
-          echo >> "$PATH, file=README.md ,line=2: Une mise à jour a été effectuée par $USERS depuis la branche $REF."
+          cd $GITHUB_WORKSPACE/My-repo
+          echo 'Une mise à jour a été effectuée par $USERS ($USERS_ID) depuis la branche $REF.' > README.md
 
       - name: PR du README
         run: |
