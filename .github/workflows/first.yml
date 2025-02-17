@@ -61,7 +61,7 @@ jobs:
             git commit -m "Mise à jour de README.md"
 
       - name: Push de la branche en cours
-        run: git push origin feature/readme
+        run: git push $GITHUB_WORKSPACE feature/readme
 
       - name: PR de la branche
         run: git pull_request_auto_merged
