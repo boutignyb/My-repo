@@ -63,12 +63,12 @@ jobs:
           cd $GITHUB_WORKSPACE/My-repo
           git config --global user.name ${{ github.actor }}
           git config --global user.email ${{ github.action }}@.github.com
-          git config --global url.git@github.com:boutignyb/My-repo.git
           git commit -m "Mise à jour de README.md"
 
       - name: Push de la branche en cours
         run: |
           cd $GITHUB_WORKSPACE/My-repo
+          git config --global url.git@github.com:boutignyb/My-repo.git
           git push origin feature/readme
 
       - name: PR de la branche
