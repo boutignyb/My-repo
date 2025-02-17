@@ -47,8 +47,7 @@ jobs:
 
       - name: Mise à jour du README.md
         run: |
-          cd $GITHUB_WORKSPACE/My-repo/
-          echo >> "file=README.md, line=2: Une mise à jour a été effectuée par $USERS depuis la branche $REF."
+          echo >> "$PATH, file=README.md ,line=2: Une mise à jour a été effectuée par $USERS depuis la branche $REF."
 
       - name: PR du README
         run: |
