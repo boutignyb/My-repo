@@ -34,11 +34,10 @@ jobs:
     name: Mise à jour du fichier README
     if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
+      - uses: fregante/setup-git-user
 
       - name: Récupération du dépôt
         run: git clone https://github.com/boutignyb/My-repo.git
