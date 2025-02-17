@@ -47,8 +47,8 @@ jobs:
 
       - name: Mise à jour du README.md
         run: |
+          cd $GITHUB_WORKSPACE/My-repo/
           echo >> "file=README.md, line=2: Une mise à jour a été effectuée par $USERS depuis la branche $REF."
-        shell: bash
 
       - name: PR du README
         run: |
@@ -56,5 +56,5 @@ jobs:
           git commit -m "Mise à jour de README.md"
           git push origin feature/readme
           git pull_request: auto-merged
-          git branch -d feature/readme
+          git branch -D feature/readme
           git checkout main
