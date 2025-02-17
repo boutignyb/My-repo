@@ -34,6 +34,8 @@ jobs:
     name: Mise à jour du fichier README
     if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
@@ -58,27 +60,21 @@ jobs:
       
       - name: Commit du Readme
         run: |
-            cd $GITHUB_WORKSPACE/My-repo
-            git config --global user.name ${{ github.actor }}
-            git config --global user.email ${{ github.action }}@user.github.com
-            git commit -m "Mise à jour de README.md"
+          cd $GITHUB_WORKSPACE/My-repo
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email ${{ github.action }}@.github.com
+          git commit -m "Mise à jour de README.md"
 
       - name: Push de la branche en cours
         run: |
-            cd $GITHUB_WORKSPACE/My-repo
-            git push https://github.com/boutignyb/My-repo.git feature/readme
+          cd $GITHUB_WORKSPACE/My-repo
+          git push origin feature/readme
 
       - name: PR de la branche
-        run: |
-            cd $GITHUB_WORKSPACE/My-repo
-            git pull_request_auto_merged
+        run: git pull_request_auto_merged
       
       - name: Suppression de la branche
-        run: |
-            cd $GITHUB_WORKSPACE/My-repo
-            git branch -D feature/readme
+        run: git branch -D feature/readme
       
       - name: Retour à la branche @main
-        run : |
-            cd $GITHUB_WORKSPACE/My-repo
-            git checkout main
+        run : git checkout main
