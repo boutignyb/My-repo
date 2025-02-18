@@ -37,13 +37,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: Checkout du code source
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Récupération du dépôt
+      - name: Clonage du dépôt distant
         run: git clone https://github.com/boutignyb/My-repo.git
 
-      - name: Création d'une branche feature/readme
+      - name: Création de la branche feature/readme
         run: |
           cd $GITHUB_WORKSPACE/My-repo
           git checkout -b feature/readme
@@ -53,29 +54,34 @@ jobs:
           cd $GITHUB_WORKSPACE/My-repo
           echo 'Une mise à jour a été effectuée par $USERS ($USERS_ID) depuis la branche $REF.' > README.md
 
-      - name: Ajour du contenu du README
+      - name: Ajout du fichier modifié
         run: |
           cd $GITHUB_WORKSPACE/My-repo
-          git add .
-      
-      - name: Commit du Readme
-        run: |
-          cd $GITHUB_WORKSPACE/My-repo
-          git config --global user.name ${{ github.actor }}
-          git config --global user.email ${{ github.action }}@.github.com
-          git commit -m "Mise à jour de README.md"
+          git add README.md
 
-      - name: Push de la branche en cours
+      - name: Commit des changements
         run: |
-          git config --global url."https://github.com/boutignyb/My-repo.git"
+          cd $GITHUB_WORKSPACE/My-repo
+          git config --global user.name "$USERS"
+          git config --global user.email "$USERS_ID@users.noreply.github.com"
+          git commit -m "Mise à jour du README.md par $USERS"
+
+      - name: Push de la branche feature/readme
+        run: |
           cd $GITHUB_WORKSPACE/My-repo
           git push origin feature/readme
 
-      - name: PR de la branche
-        run: git pull_request_auto_merged
-      
-      - name: Suppression de la branche
-        run: git branch -D feature/readme
-      
-      - name: Retour à la branche @main
-        run : git checkout main
+      - name: Création de la Pull Request pour la mise à jour du README
+        run: gh pr create --base main --head feature/readme --title "Mise à jour du README" --body "Cette PR contient une mise à jour automatique du README."
+
+      - name: Suppression de la branche locale
+        run: |
+          cd $GITHUB_WORKSPACE/My-repo
+          git branch -D feature/readme
+
+      - name: Retour à la branche principale
+        run: |
+          cd $GITHUB_WORKSPACE/My-repo
+          git checkout main
+
+    
