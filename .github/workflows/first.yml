@@ -47,8 +47,8 @@ jobs:
       
       - name: Récupération de la date et de l'heure
         run: |
-          echo "date=$(date +"%d-%m-%Y")" >> $GITHUB_ENV
-          echo "hour=$(date +"%H-%m-%s")" >> $GITHUB_ENV
+          echo "DATE=$(date +"%d-%m-%Y")" >> $GITHUB_ENV
+          echo "HOUR=$(date +"%H:%M:%S")" >> $GITHUB_ENV
 
       - name: Mise à jour du README.md
         run: |
