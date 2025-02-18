@@ -1,1 +1,1 @@
-Une mise à jour a été effectuée par $USERS ($USERS_ID) depuis la branche $REF.
+Une mise à jour a été effectuée par boutignyb (198458271) depuis la branche $REF.
