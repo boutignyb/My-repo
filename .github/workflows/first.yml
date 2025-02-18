@@ -51,7 +51,7 @@ jobs:
           current_time=$(date '+%H:%M:%S')
           current_date=$(date '+%Y-%m-%d')
           echo '
-            Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à $CURRENT_TIME le $CURRENT_DATE 
+            Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à $current_time le $current_date 
             ' >> README.md
 
       - name: Ajout du fichier modifié
