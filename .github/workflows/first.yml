@@ -45,11 +45,6 @@ jobs:
       - name: Clonage du dépôt distant
         run: git clone https://github.com/boutignyb/My-repo.git
 
-      - name: Création de la branche feature/readme
-        run: |
-          cd $GITHUB_WORKSPACE/My-repo
-          git checkout -b feature/readme
-
       - name: Mise à jour du README.md
         run: |
           cd $GITHUB_WORKSPACE/My-repo
@@ -67,27 +62,12 @@ jobs:
           git config --global user.email "$USERS_ID@users.noreply.github.com"
           git commit -m "Mise à jour du README.md par $USERS"
 
-      - name: Push de la branche feature/readme
+      - name: Push de la branche main
         run: |
           cd $GITHUB_WORKSPACE/My-repo
           git config --global user.name "$USERS"
           git config --global user.email "$USERS_ID@users.noreply.github.com"
           git remote set-url origin https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/boutignyb/My-repo.git
-          git push origin feature/readme
-
-      - name: Création de la Pull Request pour la mise à jour du README
-        run: gh pr create --base main --head feature/readme --title "Mise à jour du README" --body "Cette PR contient une mise à jour automatique du README."
-        env:
-          GH_TOKEN: ${{ github.token }}
-
-      - name: Suppression de la branche locale
-        run: |
-          cd $GITHUB_WORKSPACE/My-repo
-          git branch -D feature/readme
-
-      - name: Retour à la branche principale
-        run: |
-          cd $GITHUB_WORKSPACE/My-repo
-          git checkout main
-
-    
+          git push origin main
+          git pull
+          
