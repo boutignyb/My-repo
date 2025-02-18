@@ -11,3 +11,6 @@ Une mise à jour a été effectuée par boutignyb (198458271) depuis la branche 
 
   Une mise à jour a été effectuée par boutignyb (198458271) depuis la branche feature/B59 à $(date +%H:%M:%S) le $(date +%d-%m-%Y) 
   
+
+  Une mise à jour a été effectuée par boutignyb (198458271) depuis la branche feature/B60 à  le  
+  
