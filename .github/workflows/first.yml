@@ -77,6 +77,8 @@ jobs:
 
       - name: Création de la Pull Request pour la mise à jour du README
         run: gh pr create --base main --head feature/readme --title "Mise à jour du README" --body "Cette PR contient une mise à jour automatique du README."
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Suppression de la branche locale
         run: |
