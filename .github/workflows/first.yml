@@ -8,6 +8,8 @@ env:
   USERS: ${{ github.actor }}
   USERS_ID: ${{ github.actor_id }}
   REF: ${{ github.head_ref }}
+  DATE: $(date '+%d-%m-%Y')
+  TIME: $(date '+%H:%M:%S')
 
 permissions:
   contents: write
@@ -48,10 +50,8 @@ jobs:
       - name: Mise à jour du README.md
         run: |
           cd $GITHUB_WORKSPACE/My-repo
-          current_time=$(date '+%H:%M:%S')
-          current_date=$(date '+%Y-%m-%d')
           echo '
-            Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à $current_time le $current_date 
+            Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à ${{ env.TIME }} le ${{ env.DATE }} 
             ' >> README.md
 
       - name: Ajout du fichier modifié
