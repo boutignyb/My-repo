@@ -85,3 +85,11 @@ Je crée la branche "feature/B43" pour faire un commit puis un push pour tester 
 Je crée la branche "feature/B44" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
 
 Je crée la branche "feature/B45" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
+
+Je crée la branche "feature/B46" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
+
+Je crée la branche "feature/B47" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
+
+Je crée la branche "feature/B48" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
+
+Je crée la branche "feature/B49" pour faire un commit puis un push pour tester le fichier "first.yml" suite à sa modification pour la prochaine PR
