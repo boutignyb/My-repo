@@ -48,12 +48,12 @@ jobs:
       - name: Mise à jour du README.md
         run: |
           cd $GITHUB_WORKSPACE/My-repo
-          echo 'Une mise à jour a été effectuée par $USERS ($USERS_ID) depuis la branche $REF.' > README.md
+          echo 'Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche $REF.' > README.md
 
       - name: Ajout du fichier modifié
         run: |
           cd $GITHUB_WORKSPACE/My-repo
-          git add README.md
+          git add .
 
       - name: Commit des changements
         run: |
