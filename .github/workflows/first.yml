@@ -8,8 +8,6 @@ env:
   USERS: ${{ github.actor }}
   USERS_ID: ${{ github.actor_id }}
   REF: ${{ github.head_ref }}
-  DATE: $(date '+%d-%m-%Y')
-  TIME: $(date '+%H:%M:%S')
 
 permissions:
   contents: write
@@ -46,12 +44,17 @@ jobs:
 
       - name: Clonage du dépôt distant
         run: git clone https://github.com/boutignyb/My-repo.git
+      
+      - name: Récupération de la date et de l'heure
+        run: |
+          echo "date=$(date +"%d-%m-%Y")" >> $GITHUB_ENV
+          echo "hour=$(date +"%H-%m-%s")" >> $GITHUB_ENV
 
       - name: Mise à jour du README.md
         run: |
           cd $GITHUB_WORKSPACE/My-repo
           echo '
-            Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à ${{ env.TIME }} le ${{ env.DATE }} 
+            Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à ${{ env.HOUR }} le ${{ env.DATE }} 
             ' >> README.md
 
       - name: Ajout du fichier modifié
