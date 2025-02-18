@@ -10,6 +10,7 @@ env:
   REF: ${{ github.head_ref }}
 
 permissions:
+  contents: write
   pull-requests: write
 
 jobs:
@@ -70,8 +71,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/My-repo
           git config --global user.name "$USERS"
-          git config --global user.email "$USERS_ID@users.noreply.github.com"
-          git remote set-url origin https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/boutignyb/My-repo.git
           git push origin feature/readme
 
       - name: Création de la Pull Request pour la mise à jour du README
