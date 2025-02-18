@@ -54,7 +54,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/My-repo
           echo '
-            Une mise à jour a été effectuée par ${{github.actor}} (${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à ${{ env.HOUR }} le ${{ env.DATE }} 
+            Une mise à jour a été effectuée par ${{github.actor}} (User ID: ${{github.actor_id}}) depuis la branche ${{ github.head_ref }} à ${{ env.HOUR }} le ${{ env.DATE }} 
             ' >> README.md
 
       - name: Ajout du fichier modifié
