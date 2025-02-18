@@ -67,10 +67,9 @@ jobs:
 
       - name: Push de la branche en cours
         run: |
+          git config --global url."https://github.com/boutignyb/My-repo.git"
           cd $GITHUB_WORKSPACE/My-repo
-          git remote add url."https://github.com/boutignyb/My-repo.git"
           git push origin feature/readme
-          git remote -v 
 
       - name: PR de la branche
         run: git pull_request_auto_merged
